@@ -1,7 +1,10 @@
 import random
+import os
+from multiprocessing import Pool
 
 #Juego donde se comprueba el numero
-def juego(numero_bot, bot_en_uso):
+def juego(_):
+    global maxNum, bot_en_uso
     num = random.randint(1,maxNum)
     intentos = 1
 
@@ -37,16 +40,22 @@ def algoritmo_bot(num, intentos):
         intentos += 1
     return intentos
 
+def init_pool(maxNum_, bot_en_uso_):
+    global maxNum, bot_en_uso
+    maxNum = maxNum_
+    bot_en_uso = bot_en_uso_
 #Inicio programa
 
-num_juegos = 100000
-maxNum = 100
-media_intentos = 0
-bot_en_uso = "algoritmo"
+if __name__ == "__main__":
 
-for i in range(num_juegos):
-    media_intentos += juego(i, bot_en_uso)
+    num_juegos = 1000000
+    maxNum = 100
+    bot_en_uso = "aleatorio"
 
-media_intentos = media_intentos / num_juegos
+    n_cores = os.cpu_count() - 1
 
-print(f"El bot {bot_en_uso} a tardado en {num_juegos} juegos una media de {media_intentos} intentos")
+    with Pool(processes=n_cores, initializer=init_pool, initargs=(maxNum, bot_en_uso)) as p:
+        resultados = p.map(juego, range(num_juegos))
+
+    media_intentos = sum(resultados) / num_juegos
+    print(f"El bot {bot_en_uso} ha tardado en {num_juegos} juegos una media de {media_intentos} intentos")
