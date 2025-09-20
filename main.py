@@ -1,6 +1,5 @@
 import random
 
-global maxNum
 #Juego donde se comprueba el numero
 def juego(numero_bot, bot_en_uso):
     num = random.randint(1,maxNum)
@@ -14,7 +13,7 @@ def juego(numero_bot, bot_en_uso):
 
     return intentos
 
-#Bot random, solo devuelve un numero aleatorio
+#Bot aleatorio, solo devuelve un numero aleatorio
 def random_bot():
     val = random.randint(1,maxNum)
     return val
@@ -39,22 +38,15 @@ def algoritmo_bot(num, intentos):
     return intentos
 
 #Inicio programa
+
+num_juegos = 100000
 maxNum = 100
 media_intentos = 0
-num_juegos = 100000
+bot_en_uso = "algoritmo"
 
 for i in range(num_juegos):
-    media_intentos += juego(i, "algoritmo")
+    media_intentos += juego(i, bot_en_uso)
 
 media_intentos = media_intentos / num_juegos
 
-print(f"El bot algoritmo a tardado en {num_juegos} juegos una media de {media_intentos} intentos")
-
-media_intentos = 0
-
-for i in range(num_juegos):
-    media_intentos += juego(i, "aleatorio")
-
-media_intentos = media_intentos / num_juegos
-
-print(f"El bot aleatorio a tardado en {num_juegos} juegos una media de {media_intentos} intentos")
+print(f"El bot {bot_en_uso} a tardado en {num_juegos} juegos una media de {media_intentos} intentos")
