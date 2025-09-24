@@ -7,6 +7,7 @@ from functools import partial
 
 if __name__ == "__main__":
 
+    #Guardamos todos los bots con su nombre, localizacion y como funciona
     bots = {
         1: ("Algoritmic bot A", botsFunc.algoritmo_bot, "(Tries the number between the range of possible numbers)"),
         2: ("Random bot A", botsFunc.random_bot1, "(Chooses a random number)"),
@@ -14,6 +15,8 @@ if __name__ == "__main__":
         4: ("Lineal bot A", botsFunc.linealBot1, "(Tries every number starting in 1: 1-2-3-4-5...)")
     }
 
+
+    # Preguntamos y guardamos los datos maxNum, num_juegos y el tipo de bot introducidos por el usuario
     print("Program to compare bots trying to find a random number.")
     while True:
         maxNum = int(input("The number to find is between 1 and... "))
@@ -31,8 +34,14 @@ if __name__ == "__main__":
         if bot_en_uso in bots: break
         else: print("Invalid input.")
 
-    n_cores = os.cpu_count() - 1
 
+    #Utilizando la maxima capacidad de nucleos posible
+    if os.cpu_count() > 1:
+        n_cores = os.cpu_count() - 1
+    else:
+        n_cores = os.cpu_count()
+
+    #Ejecutamos la funcion del bot correspondiente
     botName, funcName = bots[bot_en_uso][0], bots[bot_en_uso][1]
     func = partial(funcName, maxNum=maxNum)
     with Pool(processes=n_cores) as p:
