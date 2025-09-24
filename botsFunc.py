@@ -54,3 +54,21 @@ def linealBot1(_, maxNum):
             val += 1
             intentos += 1
     return intentos
+
+#LinealBot2 empieza al principio y al final y va subiendo y bajando: 1-100-2-99-3-98...
+def linealBot2(_, maxNum):
+    num = random.randint(1, maxNum)
+    inicio = 0
+    final = maxNum+1
+    intentos = 0
+    while True:
+        if inicio == num or final == num:
+            break
+        else:
+            if intentos % 2 == 0:
+                inicio += 1
+                intentos += 1
+            else:
+                final -= 1
+                intentos += 1
+    return intentos
