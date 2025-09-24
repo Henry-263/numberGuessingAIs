@@ -1,7 +1,4 @@
-import algoritmoBot1
-import randomBot1
-import randomBot2
-import linealBot1
+import botsFunc
 import os
 from multiprocessing import Pool
 from functools import partial
@@ -11,10 +8,10 @@ from functools import partial
 if __name__ == "__main__":
 
     bots = {
-        1: ("Algoritmic bot 1", algoritmoBot1.algoritmo_bot, "(Tries the number between the range of possible numbers)"),
-        2: ("Random bot 1", randomBot1.random_bot1, "(Chooses a random number)"),
-        3: ("Random bot 2", randomBot2.random_bot2, "(Chooses a random number, but without repeating a number)"),
-        4: ("Lineal bot 1", linealBot1.linealBot1, "(Tries every number starting in 1: 1-2-3-4-5...)")
+        1: ("Algoritmic bot A", botsFunc.algoritmo_bot, "(Tries the number between the range of possible numbers)"),
+        2: ("Random bot A", botsFunc.random_bot1, "(Chooses a random number)"),
+        3: ("Random bot B", botsFunc.random_bot2, "(Chooses a random number, but without repeating a number)"),
+        4: ("Lineal bot A", botsFunc.linealBot1, "(Tries every number starting in 1: 1-2-3-4-5...)")
     }
 
     print("Program to compare bots trying to find a random number.")
@@ -42,4 +39,4 @@ if __name__ == "__main__":
         resultados = p.map(func, range(num_juegos))
 
     media_intentos = sum(resultados) / num_juegos
-    print(f"{botName} in {num_juegos} games averaged {media_intentos} tries to find a number between 1 and {maxNum}")
+    print(f"{botName} in {num_juegos} games averaged {round(media_intentos, 3)} tries to find a number between 1 and {maxNum}")
