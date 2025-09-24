@@ -1,4 +1,4 @@
-#Bot algoritmo, divide en mitad las posibilidades segun si es mayor o menor
+#Bot random1, devuelve numero aleatorio(se repiten numeros)
 import random
 def random_bot1(_,maxNum):
     intentos = 0

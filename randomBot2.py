@@ -1,4 +1,5 @@
 import random
+#Bot random2, devuelve numero aleatorio(no se repiten numeros)
 def random_bot2(_,maxNum):
     intentos = 0
     num = random.randint(1, maxNum)
