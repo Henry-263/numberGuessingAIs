@@ -11,12 +11,14 @@ if __name__ == "__main__":
     #Guardamos todos los bots con su nombre, localizacion y como funciona
     bots = {
         0: ("All bots", None, "(Executes all bots)"),
-        1: ("Algoritmic bot A", botsFunc.algoritmo_bot, "(Tries the number between the range of possible numbers)"),
-        2: ("Random bot A", botsFunc.random_bot1, "(Chooses a random number)"),
-        3: ("Random bot B", botsFunc.random_bot2, "(Chooses a random number, but without repeating a number)"),
-        4: ("Random bot C", botsFunc.random_bot3,"(Chooses a random number in between the range of possible numbers)"),
-        5: ("Lineal bot A", botsFunc.linealBot1, "(Tries every number starting in 1: 1-2-3-4-5...)"),
-        6: ("Lineal bot B", botsFunc.linealBot2, "(Checks pairs of numbers from the outside in: first 1 and 100, then 2 and 99, then 3 and 98, etc., until it finds the target number)")
+        1: ("Algoritmic bot A", botsFunc.algoritmo_bot1, "(Tries the number between the range of possible numbers)"),
+        2: ("Algoritmic bot B", botsFunc.algoritmo_bot2, "(Divides by 3 or 2/3 in the posible range of numbers)"),
+        3: ("Random bot A", botsFunc.random_bot1, "(Chooses a random number)"),
+        4: ("Random bot B", botsFunc.random_bot2, "(Chooses a random number, but without repeating a number)"),
+        5: ("Random bot C", botsFunc.random_bot3,"(Chooses a random number in between the range of possible numbers)"),
+        6: ("Lineal bot A", botsFunc.linealBot1, "(Tries every number starting in 1: 1-2-3-4-5...)"),
+        7: ("Lineal bot B", botsFunc.linealBot2, "(Checks pairs of numbers from the outside in: first 1 and 100, then 2 and 99, then 3 and 98, etc., until it finds the target number)"),
+        8: ("Lineal bot C", botsFunc.linealBot3, "(Jumps 10,10,10... until overshoots, then -5 and linear search)")
     }
 
 
@@ -71,6 +73,13 @@ if __name__ == "__main__":
             allBotsName.append(botName)
             allBotsAvg.append(media_intentos)
 
+    # ordena por el segundo elemento (el valor)
+    datos = list(zip(allBotsName, allBotsAvg))
+    datos.sort(key=lambda x: x[1])
+    allBotsName, allBotsAvg = zip(*datos)
+
+
+    # Ajustes de la tabla de barras
     plt.bar(allBotsName, allBotsAvg, width = 0.3)
     for i, v in enumerate(allBotsAvg):
         plt.text(i, v + 0.5, str(round(v, 2)), ha='center')
