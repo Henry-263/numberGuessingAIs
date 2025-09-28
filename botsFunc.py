@@ -96,19 +96,17 @@ def linealBot1(_, maxNum):
 def linealBot2(_, maxNum):
     num = random.randint(1, maxNum)
     inicio = 1
-    final = maxNum
-    intentos = 1
+    final = maxNum + 1
+    intentos = 0
     while True:
+        intentos += 1  # ← Incrementar aquí
         if inicio == num or final == num:
-            break
+            return intentos
+
+        if intentos % 2 == 0:  # ← Ahora funciona correctamente
+            inicio += 1
         else:
-            if intentos % 2 == 0:
-                inicio += 1
-                intentos += 1
-            else:
-                final -= 1
-                intentos += 1
-    return intentos
+            final -= 1
 
 #Salta de diez en diaz hasta ser menor que el numero, le resta cinco y suma o resta de 1 en 1
 def linealBot3(_, maxNum):
