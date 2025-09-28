@@ -25,6 +25,22 @@ def random_bot2(_,maxNum):
         intentos += 1
     return intentos
 
+def random_bot3(_,maxNum):
+    intentos = 0
+    num = random.randint(1, maxNum)
+    val = 0
+    maxPos = maxNum
+    minPos = 1
+    while num != val:
+        val = random.randint(minPos, maxPos)
+        if val > num:
+            maxPos = val - 1
+        else:
+            minPos = val + 1
+        intentos += 1
+    return intentos
+
+
 #Bot algoritmo, divide en mitad las posibilidades segun si es mayor o menor
 def algoritmo_bot(_, maxNum):
 
